@@ -7,8 +7,16 @@ const isFnCall = function (key){
 /* A value is accesible once it has properties.
  * This said, strings and numbers are accessible, soly undefined and null aren't
  */
-const isAccessible = function (obj) {
+const isAssignable = function (obj) {
   return obj !== null && obj !== undefined;
+};
+
+const isUndefOrPureObj = function (obj) {
+  return obj === undefined || (obj !== null && typeof obj === 'object' && !Array.isArray(obj));
+};
+
+const isObj = function (obj) {
+  return obj !== null && typeof obj === 'object';
 };
 
 /*
@@ -18,13 +26,26 @@ const isAccessible = function (obj) {
  * @param {...args} a sequence of arguments that may be passed to the function we are calling
  * @return a nested value OR the result of a nested function OR undefined
  */
-module.exports = (key, obj, ...args) => {
+module.exports.g = (key, obj, ...args) => {
   let splitted = key.split('.');
   let lastkey = splitted.pop();
   let isFnCallLastkey = isFnCall(lastkey);
   lastkey = isFnCallLastkey ? lastkey.slice(0,-2) : lastkey;
   let beforelast = splitted.reduce((a,b) => {
-    return isAccessible(a) && a[b];
+    return isAssignable(a) && a[b];
   }, obj);
-  return isAccessible(beforelast) ? (isFnCallLastkey ? beforelast[lastkey](...args) : beforelast[lastkey]) : undefined;
+  return isAssignable(beforelast) ? (isFnCallLastkey ? beforelast[lastkey](...args) : beforelast[lastkey]) : undefined;
+};
+
+module.exports.s = (key, value, obj) => {
+  key.split('.').reduce(function(o, s, i, arr) {
+  	return (i == arr.length-1) ? o[s] = value : o[s] = Object.assign( (isObj(o[s]) ? o[s] : {}) ,{});
+   }, (() => {
+   if (obj === null) return obj = {};
+  	if (isUndefOrPureObj(obj)) {
+    	if (obj === undefined) { return obj = {}; } else { return obj; }
+    }
+    return obj;
+  })() );
+  return obj;
 };
