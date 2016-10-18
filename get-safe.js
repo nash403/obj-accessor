@@ -37,7 +37,9 @@ module.exports.g = (key, obj, ...args) => {
   return isAssignable(beforelast) ? (isFnCallLastkey ? beforelast[lastkey](...args) : beforelast[lastkey]) : undefined;
 };
 
-module.exports.s = (key, value, obj) => {
+module.exports.s = (key, value, original) => {
+  if (typeof key !== 'string') throw new Error(`Cannot set a value with a non-string property name, got ${typeof key}`);
+  let obj = doNotErase ? Object.assign({},original) : original;
   key.split('.').reduce(function(o, s, i, arr) {
   	return (i == arr.length-1) ? o[s] = value : o[s] = Object.assign( (isObj(o[s]) ? o[s] : {}) ,{});
    }, (() => {
