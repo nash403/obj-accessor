@@ -1,7 +1,7 @@
 {
   "name": "set-safe",
-  "version": "1.4.2",
-  "description": "safe access to deeply nested properties and functions in JS objects without getting a TypeError",
+  "version": "0.1.0",
+  "description": "Safely set value at property, create intermediate properties if necessary",
   "main": "index.js",
   "scripts": {
     "test": "node tests.js",
@@ -9,21 +9,16 @@
   },
   "keywords": [
     "safe",
-    "get",
-    "object properties",
+    "set",
+    "setter",
+    "intermediate",
+    "value",
     "nested",
-    "properties",
     "property",
     "deep",
-    "fetch",
-    "access",
-    "accessor",
     "dot",
-    "utility",
     "dot path",
     "dot notation",
-    "retrieve",
-    "reach",
     "TypeError",
     "string path"
   ],
@@ -31,7 +26,7 @@
     "type": "git",
     "url": "https://github.com/nash403/set-safe.git"
   },
-  "author": "Nash403",
+  "author": "nash403",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.14.0",
