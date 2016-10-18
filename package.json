@@ -1,11 +1,11 @@
 {
-  "name": "get-safe",
+  "name": "set-safe",
   "version": "1.4.2",
   "description": "safe access to deeply nested properties and functions in JS objects without getting a TypeError",
   "main": "index.js",
   "scripts": {
     "test": "node tests.js",
-    "build": "rimraf ./browser-version/get-safe.js && webpack"
+    "build": "rimraf ./browser-version/set-safe.js && webpack"
   },
   "keywords": [
     "safe",
@@ -29,7 +29,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/nash403/get-safe.git"
+    "url": "https://github.com/nash403/set-safe.git"
   },
   "author": "Nash403",
   "license": "MIT",

@@ -4,8 +4,8 @@ module.exports = {
   entry: "./index",
   output: {
     path: __dirname,
-    filename: "./browser-version/accessor.js",
-    library: "Accessor",
+    filename: "./browser-version/set-safe.js",
+    library: "setSafe",
     libraryTarget: 'umd'
   },
   resolve: {
