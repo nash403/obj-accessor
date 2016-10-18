@@ -1,2 +1,2 @@
-var get_safe = require('./get-safe');
+var get_safe = require('./accessor');
 module.exports = get_safe;

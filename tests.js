@@ -1,4 +1,4 @@
-const _ = require ('./get-safe');
+const _ = require ('./accessor');
 const toto = {
   foo: {
     bar: {
